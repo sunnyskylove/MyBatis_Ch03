@@ -22,7 +22,7 @@ public class PrintResult {
     }
 
     // 출력문 에러메세지일때, 1번~5번 만들어주기!
-    public void printErrorMessage(String errorCode) {
+    public void printErrorMessage(String errorCode) {               // 실패시!!
 
         String errorMessage = "";
         switch (errorCode) {
@@ -41,9 +41,9 @@ public class PrintResult {
 
     }
 
-    public void printSuccessMessage(String successCode) {  // 원랜 successCode가 아닌 insert 였음~(보고 이해하기 쉽게)
+    public void printSuccessMessage(String successCode) {  // 성공했을시 메세지~!!
 
-        String SuccessMessage = "";
+        String SuccessMessage = "";                         // 원랜 successCode가 아닌 insert 였음~(보고 이해하기 쉽게)
         switch (successCode) {
             case "insert" : SuccessMessage = "신규 메뉴 등록을 성공하였습니다!!!"; break;
         }

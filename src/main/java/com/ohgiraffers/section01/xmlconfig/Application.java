@@ -39,8 +39,8 @@ public class Application {
             int no = sc.nextInt();
 
             switch (no) {
-                // 1. break 앞에 명령어!(사용자->인포직원에게 모든메뉴 조회해줘 명령)
-                case 1: menuController.selectAllMenu(); break;
+                // 1. break 앞에 명령어 만들기!!(사용자-> 인포직원에게 모든메뉴 조회해줘 명령)
+                case 1: menuController.selectAllMenu(); break;  // ()안 내용 재사용 가능하다!
                 case 2: menuController.selectMenuByCode(inputMenuCode()); break;
                 case 3: menuController.registMenu(inputMenu()); break;
                 case 4: menuController.editMenu(updateMenu()); break;

@@ -83,7 +83,7 @@ public class MenuService {
 
         sqlSession.close();
 
-        return result > 0 ? true : false;
+        return result > 0 ? true : false;           // 따라서 밑에 result 1,0 값은 참,거짓으로 표현된다!
 
     }
 
@@ -103,7 +103,6 @@ public class MenuService {
         sqlSession.close();
 
         return result > 0 ? true : false;
-
 
     }
 }
