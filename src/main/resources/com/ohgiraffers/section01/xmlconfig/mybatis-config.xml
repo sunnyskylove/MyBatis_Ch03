@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>                 <!-- mybatis 공식홈피에서~ -->
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <environments default="dev">
+        <environment id="dev">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost/menudb"/>    <!-- 나중에 loclahost만 아이피주소같은것으로 바꿔 쓸것이다.-->
+                <property name="username" value="ohgiraffers"/>
+                <property name="password" value="ohgiraffers"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="com/ohgiraffers/section01/xmlconfig/menu-mapper.xml"/>            <!-- mapper는 '/'로 해줘서 닫아줌! -->
+    </mappers>
+</configuration>
+
+<!-- * xml 방식으로 만든 설정파일 이다. -->
