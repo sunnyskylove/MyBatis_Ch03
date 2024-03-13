@@ -15,8 +15,8 @@ public class MenuController {
 
     // 선언과 동시에 초기화, 생성자를 통해 초기화 할 수 있었는데, final 를 붙이면 불변의 기능을 함으로써,
     // 메뉴서비스를 만들 준비를 한다!
-    private final MenuService menuService;          // MenuService 클래스도 없어서, 클래스 새로 만들어준다.
-    private final PrintResult printResult;      // 모든 수행 결과물을 보여줄 수 있는 페이지 만들 것임
+    private final MenuService menuService;     // MenuService 클래스도 없어서, 클래스 새로 만들어준다.
+    private final PrintResult printResult;    // 모든 수행 결과물을 보여줄 수 있는 페이지 만들 것임
 
     public MenuController() {
         this.menuService = new MenuService();
@@ -56,6 +56,28 @@ public class MenuController {
 
     }
 
+    // editMenu 다른 방식으로!!(+ 모두 다 넣을떄~)
+//    public void editMenu(Map<String, String> parameter) {
+//
+//        int code = Integer.parseInt(parameter.get("code"));
+//        String name = parameter.get("name");
+//        int price = Integer.parseInt(parameter.get("price"));
+//        int categoryCode = Integer.parseInt(parameter.get("categoryCode"));
+//
+//        MenuDTO menu = new MenuDTO();               // NenuDTO menu 가져오기!
+//        menu.setCode(code);
+//        menu.setName(name);
+//        menu.setPrice(price);
+//        menu.setCategoryCode(categoryCode);
+//
+//        if (menuService.editMenu(menu)) {             // 보내준 메세지가 성공이면, ▼
+//            printResult.printSuccessMessage("insert");
+//
+//        } else {
+//            printResult.printErrorMessage("insert");
+//
+//        }
+
     public void registMenu(Map<String, String> parameter) {
 
         String name = parameter.get("name");
@@ -77,45 +99,11 @@ public class MenuController {
 
     }
 
-    // insertMenu
-    public void editMenu(Map<String, String> parameter) {
-
-        int code = Integer.parseInt(parameter.get("code"));
-        String name = parameter.get("name");
-        int price = Integer.parseInt(parameter.get("price"));
-        int categoryCode = Integer.parseInt(parameter.get("categoryCode"));
-
-        MenuDTO menu = new MenuDTO();               // NenuDTO menu 가져오기!
-        menu.setCode(code);
-        menu.setName(name);
-        menu.setPrice(price);
-        menu.setCategoryCode(categoryCode);
-
-        if (menuService.editMenu(menu)) {             // 보내준 메세지가 성공이면, ▼
-            printResult.printSuccessMessage("insert");
-
-        } else {
-            printResult.printErrorMessage("insert");
-
-        }
-
-
+    public void modifyMenu(Map<String, String> stringStringMap) {
     }
 
-    public void deleteMenu(Map<String, String> parameter) {
-
-        int code = Integer.parseInt(parameter.get("code")); // parameter.get("") 쓰고 alt +enter 변경!
-
-        MenuDTO menu = new MenuDTO();               // NenuDTO menu 가져오기!
-        menu.setCode(code);
-
-        if (menuService.deleteMenu(menu)) {             // 보내준 메세지가 성공이면, ▼
-            printResult.printSuccessMessage("insert");
-
-        } else {
-            printResult.printErrorMessage("insert");
-
-
-        }
+    public void deleteMenu(Map<String, String> stringStringMap) {
     }
 }
+
+

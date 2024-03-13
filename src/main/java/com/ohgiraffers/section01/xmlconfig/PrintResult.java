@@ -4,7 +4,7 @@ import com.mysql.cj.util.StringInspector;
 
 import java.util.List;
 
-// DTO랑 Result 랑 맞춤???
+// DTO랑 Result 랑 맞춤???, # 결과화면
 
 public class PrintResult {
 
