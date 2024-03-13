@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!-- mybatis 홈피 > 시작하기 > 매핑괸 SQL 구문 살펴보기 에서 위 4줄-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MenuMapper">               <!-- namespace 메퍼이름 정하는 공간-->
+    <!-- 필기. 조회한 컬럼과 MenuDTO 를 매핑시키기 위한 설정 -->
+    <!-- ↓ 한번에 만들어놓고 재사용 만들기 (원랜, connection 1개당 매핑해줌 -->
+    <resultMap id="menuResultMap" type="com.ohgiraffers.section01.xmlconfig.MenuDTO">       <!-- DTO 연동! -->
+        <id property="code" column="MENU_CODE"/>            <!--id property 있는거랑, colum 내용 일치하다는 말! -->
+        <result property="name" column="MENU_NAME"/>       <!-- JDBC에서 작성했을땐 무지 길었었음..이건 간략, 재사용 가능! -->
+        <result property="price" column="MENU_PRICE"/>
+        <result property="categoryCode" column="CATEGORY_CODE"/>
+        <result property="orderableStatus" column="ORDERABLE_STATUS"/>
+    </resultMap>                    <!-- 매핑해놓음! -->
+
+    <select id="selectAllMenu" resultMap="menuResultMap">  <!--id= DAO에서 호출할 만든 이름, resultMap = 위에 입력한 것을 -->
+        SELECT
+        MENU_CODE,
+        MENU_NAME,
+        MENU_PRICE,
+        CATEGORY_CODE,
+        ORDERABLE_STATUS
+        FROM
+        TBL_MENU
+        WHERE
+        ORDERABLE_STATUS = 'Y'      <!-- Y 인것만 출력! -->
+        ORDER BY MENU_CODE
+    </select>               <!-- 주문1 종료 -->
+
+    <!-- 필기. 파라미터가 한 개인 경우 바인딩 되는({code}) 이름은 상관 없으며, 파라미터 타입을 지정하지 않아도 된다.
+               그리고, 여러개일땐 또 다르다..?? -->
+    <!-- 주문2 시작~, Menu_DAO와 연결!!-->
+    <select id="selectMenuByCode" resultMap="menuResultMap" parameterType="_int">
+        SELECT
+        MENU_CODE,
+        MENU_NAME,
+        MENU_PRICE,
+        CATEGORY_CODE,
+        ORDERABLE_STATUS
+        FROM
+        TBL_MENU
+        WHERE ORDERABLE_STATUS = 'Y'
+        AND   MENU_CODE = #{ code }
+    </select>
+
+    <!-- 필기. insert, update, delete의 경우 int형으로 기본적으로 수행 결과를 반환한다.
+              파라미트 전달된 menu 를 DTO의 필드명으로 값을 바인딩 해야 한다.
+    -->
+    <insert id="insertMenu" parameterType="com.ohgiraffers.section01.xmlconfig.MenuDTO">
+        INSERT INTO TBL_MENU
+        (MENU_NAME, MENU_PRICE, CATEGORY_CODE, ORDERABLE_STATUS)
+        VALUES
+        (#{ name }, #{ price }, #{categoryCode}, 'Y')
+    </insert>
+
+    <update id="updateMenu" parameterType="com.ohgiraffers.section01.xmlconfig.MenuDTO">
+        UPDATE TBL_MENU
+        SET
+        MENU_NAME = #{name}
+        , MENU_PRICE = #{price}
+        , CATEGORY_CODE = #{categoryCode}
+        WHERE
+        MENU_CODE = #{code}
+    </update>
+
+    <delete id="deleteMenu" parameterType="_int">
+        DELETE
+        FROM TBL_MENU
+        WHERE MENU_CODE = #{code}
+    </delete>
+
+</mapper>
